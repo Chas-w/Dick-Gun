@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch4elqxh8xq7s"]
+
+[ext_resource type="PackedScene" uid="uid://sp2i04kst16f" path="res://Prefabs/player_controller.tscn" id="1_3dogw"]
+[ext_resource type="Texture2D" uid="uid://byjcns6054ft7" path="res://grid.png" id="2_r5l72"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6adnx"]
+albedo_color = Color(0, 1, 0.16862746, 1)
+albedo_texture = ExtResource("2_r5l72")
+
+[sub_resource type="BoxMesh" id="BoxMesh_uhqqe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3dogw"]
+
+[node name="Test Scene" type="Node3D"]
+
+[node name="Player Controller" parent="." instance=ExtResource("1_3dogw")]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(102.10304, 0, 0, 0, 10.2103, 0, 0, 0, 102.10304, 0, -6.178672, 0)
+material_override = SubResource("StandardMaterial3D_6adnx")
+mesh = SubResource("BoxMesh_uhqqe")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/StaticBody3D"]
+shape = SubResource("BoxShape3D_3dogw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, -0.26434436, 0.96442837, 0, -0.96442837, -0.26434436, 0, 13.1554165, 0)

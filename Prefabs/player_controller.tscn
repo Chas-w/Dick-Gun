@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://sp2i04kst16f"]
+
+[ext_resource type="Script" uid="uid://bmdfiuffncksv" path="res://Prefabs/player_controller.gd" id="1_cs8a0"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6adnx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_42wel"]
+albedo_color = Color(1, 0.20392157, 1, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uhqqe"]
+
+[node name="Player Controller" type="CharacterBody3D"]
+script = ExtResource("1_cs8a0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_6adnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_42wel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_uhqqe")
+
+[node name="Camera Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0.625937, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Camera Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
